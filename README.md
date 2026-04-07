@@ -5,11 +5,7 @@ A fun mod that allows you to put any enchantments on any enchantable item.
 > [!WARNING]  
 > ⚠️ **Not meant for survival gameplay.**
 
----
-
 ![Showcase Image](assets/image1.jpeg)
-
----
 
 ## ⚙️ Requirements
 
