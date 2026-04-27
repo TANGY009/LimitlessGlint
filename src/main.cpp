@@ -16,14 +16,15 @@ uintptr_t GetLibBase() {
     return 0;
 }
 
-void (*old_Enchant_Setter)(void* self, unsigned char id, int rarity, void* src, size_t n, void* a6, size_t a7, int a8, void* srca, size_t na, int a11, int a12, int a13);
+namespace Enchant {
+    void (*old_Enchant)(void* self, uint8_t id, int rarity, void* src, size_t n, void* a6, size_t a7, int a8, void* srca, size_t na, int a11, int a12, int a13);
+    void Enchant(void* self, uint8_t id, int rarity, void* src, size_t n, void* a6, size_t a7, int a8, void* srca, size_t na, int a11, int a12, int a13) {
+        old_Enchant(self, id, rarity, src, n, a6, a7, a8, srca, na, a11, 0xFFFFFFFF, 0xFFFFFFFF);
+    }
 
-void hook_Enchant_Setter(void* self, unsigned char id, int rarity, void* src, size_t n, void* a6, size_t a7, int a8, void* srca, size_t na, int a11, int a12, int a13) {
-    old_Enchant_Setter(self, id, rarity, src, n, a6, a7, a8, srca, na, a11, 0xFFFFFFFF, 0xFFFFFFFF);
-}
-
-bool Enchant_isCompatibleWith(void* a1, uint8_t ID) {
-    return true;
+    bool isCompatibleWith(void* a1, uint8_t ID) {
+        return true;
+    }
 }
 
 void** FindVtable(const char* cls) {
@@ -103,10 +104,10 @@ void HookCompatible() {
             }
         }
     };
-    Redirect("14MendingEnchant", {2}, (uintptr_t)Enchant_isCompatibleWith);
-    Redirect("24TridentChannelingEnchant", {2}, (uintptr_t)Enchant_isCompatibleWith);
-    Redirect("21TridentRiptideEnchant", {2}, (uintptr_t)Enchant_isCompatibleWith);
-    Redirect("15CrossbowEnchant", {2}, (uintptr_t)Enchant_isCompatibleWith);
+    Redirect("14MendingEnchant", {2}, (uintptr_t)Enchant::isCompatibleWith);
+    Redirect("24TridentChannelingEnchant", {2}, (uintptr_t)Enchant::isCompatibleWith);
+    Redirect("21TridentRiptideEnchant", {2}, (uintptr_t)Enchant::isCompatibleWith);
+    Redirect("15CrossbowEnchant", {2}, (uintptr_t)Enchant::isCompatibleWith);
     LOG("redirected %d vtable references", replaced);
 }
 
@@ -130,7 +131,7 @@ void init() {
         return;
     }
     LOG("Setter found at offset: 0x%lx. Applying hook...", (long)(setterAddr - base));
-    GlossHook((void*)setterAddr, (void*)hook_Enchant_Setter, (void**)&old_Enchant_Setter);
+    GlossHook((void*)setterAddr, (void*)Enchant::Enchant, (void**)&Enchant::old_Enchant);
     HookCompatible();
     LOG("Mod initialized successfully.");
 }
