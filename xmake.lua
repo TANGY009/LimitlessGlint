@@ -1,5 +1,5 @@
 set_project("LimitlessGlint")
-set_version("1.0.0")
+set_version("1.0.1")
 
 set_languages("cxx23")
 
@@ -14,12 +14,7 @@ add_repositories(
 
 target("LimitlessGlint")
     set_kind("shared")
-    add_files("src/main.cpp")
+    add_files("src/*.cpp")
     add_includedirs("src")
-    if is_arch("arm64-v8a") then
-        add_linkdirs("lib/ARM64")
-    elseif is_arch("armeabi-v7a") then
-        add_linkdirs("lib/ARM")
-    end
     
-    add_links("GlossHook", "log")
+    add_links("log")

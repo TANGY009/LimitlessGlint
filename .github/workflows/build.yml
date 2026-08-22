@@ -15,7 +15,7 @@ jobs:
       - name: Setup Android NDK
         uses: nttld/setup-ndk@v1
         with:
-          ndk-version: r27d
+          ndk-version: r29
 
       - name: Setup xmake
         uses: xmake-io/github-action-setup-xmake@v1
