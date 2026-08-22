@@ -1,6 +1,6 @@
 # ✨ LimitlessGlint
 
-A fun mod that allows you to put any enchantments on any enchantable item.
+A fun mod that allows you to put any enchantments on any item.
 
 > [!WARNING]  
 > ⚠️ **Not meant for survival gameplay.**
