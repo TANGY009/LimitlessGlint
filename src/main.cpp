@@ -306,7 +306,11 @@ void init() {
     Redirect((void*)targetFunc, (void*)Enchant::Enchant, (void**)&Enchant::old_Enchant);
     HookCompatible();
     
-    Patch::Queue("3F 00 00 71 ?? ?? 9F 1A 08 01 02 2A ?? ?? 00 34 ?? ?? 00 37","20 00 80 52 C0 03 5F D6");
+    Patch::Queue(
+    "4A 19 40 B9 5F 01 09 6A 81 01 00 54 03 00 00 14 49 01 00 35 22 01 00 37",
+    "4A 19 40 B9 5F 01 09 6A 81 01 00 54 0B 00 00 14 0A 00 00 14 22 01 00 37"
+    );
+
     Patch::Execute();
     
     LOG("Mod initialized successfully.");
