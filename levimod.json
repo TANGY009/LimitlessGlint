@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "id": "limitlessglint",
+  "version": "1.0.2",
+  "minecraft_versions": [
+    "1.26.5X.X"
+  ],
+  "info": {
+    "name": "LitmitlessGlint",
+    "author": "TANGY009",
+    "description": "Allows you to put any enchantments on any item",
+    "homepage_url": "https://github.com/TANGY009/LitmitlessGlint",
+    "icon": "icon.png",
+    "tags": [
+      "Experimental"
+    ]
+  },
+  "release_assets": {
+    "include": [
+      "*.levipack"
+    ],
+    "labels": {
+      "LimitlessGlint.levipack": "LeviPack"
+    }
+  }
+}
