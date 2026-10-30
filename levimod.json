@@ -3,7 +3,8 @@
   "id": "limitlessglint",
   "version": "1.0.2",
   "minecraft_versions": [
-    "1.26.5X.X"
+    "1.26.5X.X",
+    "1.26.6X.X"
   ],
   "info": {
     "name": "LimitlessGlint",
